@@ -12,6 +12,8 @@ namespace Indicadores.Datos.Mapping.Almacen
         {
             builder.ToTable("categoria")
                 .HasKey(h => h.idcategoria);
+
+
         }
     }
 }
