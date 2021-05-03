@@ -15,6 +15,6 @@ namespace Indicadores.Entidades.Impresion
         public string edificioimpresora { get; set; }
         public string ubicacionimpresora { get; set; }
 
-        public virtual ICollection<ControlToner> cambios { get; set; }
+        public virtual ICollection<ControlToner> listacambios { get; set; }
     }
 }

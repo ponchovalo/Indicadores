@@ -11,7 +11,7 @@ namespace Indicadores.Web.Models.Impresion.Impresora
     {
         public int idimpresora { get; set; }
         public string nombreimpresora { get; set; }
-        public string modeloimpreosra { get; set; }
-        public List<ControlToner> cambios { get; set; }
+        public string modeloimpresora { get; set; }
+        public List<ControlTonerListaImpViewmodel> cambios { get; set; }
     }
 }

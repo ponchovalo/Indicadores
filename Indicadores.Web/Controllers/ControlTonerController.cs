@@ -36,10 +36,10 @@ namespace Indicadores.Web.Controllers
                 contador124 = c.contador124,
                 contador102 = c.contador102,
                 fecha = c.fecha,
-                impresora = c.impresora.nombreimpresora,
                 idimpresora = c.impresoraidimpresora,
-                usuario = c.usuario.nomusuario,
-                idusuario = c.usuarioidusuario
+                impresora = c.impresora.nombreimpresora,
+                idusuario = c.usuarioidusuario,
+                usuario = c.usuario.nomusuario
             });
         }
 

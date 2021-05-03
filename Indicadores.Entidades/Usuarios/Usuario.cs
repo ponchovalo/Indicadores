@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Indicadores.Entidades.Impresion;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -22,6 +23,7 @@ namespace Indicadores.Entidades.Usuarios
         public Rol rol { get; set; }
         public Area area { get; set; }
         public Puesto puesto { get; set; }
+
 
     }
 }

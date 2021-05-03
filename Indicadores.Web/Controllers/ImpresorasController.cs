@@ -42,7 +42,36 @@ namespace Indicadores.Web.Controllers
             });
         }
 
-  
+        // GET: api/Impresoras/ListarCambios
+        [HttpGet("[action]")]
+        public async Task<IEnumerable<ImpresorasTonerViewModel>> ListarCambios()
+        {
+            var impresora = await _context.Impresoras
+                .Include(c => c.listacambios)
+                .ToListAsync();
+
+            var lista = await _context.ControlToners
+                .Include(u => u.usuario)
+                .ToListAsync();
+
+            return impresora.Select(i => new ImpresorasTonerViewModel
+            {
+                idimpresora = i.idimpresora,
+                nombreimpresora = i.nombreimpresora,
+                modeloimpresora = i.modeloimpresora,
+                cambios = i.listacambios.Select(c => new ControlTonerListaImpViewmodel
+                {
+                    idcontrol = c.idcontrol,
+                    fecha = c.fecha,
+                    idimpresora = c.impresoraidimpresora,
+                    idusuario = c.usuarioidusuario,
+                    usuario = c.usuario.nomusuario
+                }).ToList()
+   
+            });
+        }
+
+
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
