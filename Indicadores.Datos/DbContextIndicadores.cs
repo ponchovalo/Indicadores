@@ -2,14 +2,14 @@
 using Indicadores.Datos.Mapping.Bitacora;
 using Indicadores.Datos.Mapping.Descripcion;
 using Indicadores.Datos.Mapping.Horario;
-using Indicadores.Datos.Mapping.Impresora;
 using Indicadores.Datos.Mapping.Ubicacion;
 using Indicadores.Datos.Mapping.Usuarios;
+using Indicadores.Datos.Mapping.Impresion;
 using Indicadores.Entidades.Almacen;
 using Indicadores.Entidades.Bitacora;
 using Indicadores.Entidades.Descripcion;
 using Indicadores.Entidades.Horario;
-using Indicadores.Entidades.Impresora;
+using Indicadores.Entidades.Impresion;
 using Indicadores.Entidades.Ubicacion;
 using Indicadores.Entidades.Usuarios;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +47,7 @@ namespace Indicadores.Datos
         public DbSet<TipoSol> TipoSols { get; set; }
         public DbSet<Turno> Turnos { get; set; }
         public DbSet<Impresora> Impresoras { get; set; }
+        public DbSet<ControlToner> ControlToners { get; set; }
 
         public DbContextIndicadores(DbContextOptions<DbContextIndicadores> options) : base(options)
         {
@@ -82,6 +83,7 @@ namespace Indicadores.Datos
             modelBuilder.ApplyConfiguration(new TipoSolMap());
             modelBuilder.ApplyConfiguration(new TurnoMap());
             modelBuilder.ApplyConfiguration(new ImpresoraMap());
+            modelBuilder.ApplyConfiguration(new ControlTonerMap());
         }
     }
 }

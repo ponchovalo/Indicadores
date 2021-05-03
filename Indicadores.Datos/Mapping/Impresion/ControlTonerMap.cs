@@ -7,12 +7,14 @@ using System.Text;
 
 namespace Indicadores.Datos.Mapping.Impresion
 {
-    public class ImpresoraMap : IEntityTypeConfiguration<Impresora>
+    public class ControlTonerMap : IEntityTypeConfiguration<ControlToner>
     {
-        public void Configure(EntityTypeBuilder<Impresora> builder)
+        public void Configure(EntityTypeBuilder<ControlToner> builder)
         {
-            builder.ToTable("impresora")
-                .HasKey(i => i.idimpresora);
+            builder.ToTable("controltoner")
+                .HasKey(i => i.idcontrol);
+                
+            
         }
     }
 }

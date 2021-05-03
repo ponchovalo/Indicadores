@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Indicadores.Entidades.Impresora
+namespace Indicadores.Entidades.Impresion
 {
     public class Impresora
     {
@@ -14,5 +14,7 @@ namespace Indicadores.Entidades.Impresora
         public string macimpresora { get; set; }
         public string edificioimpresora { get; set; }
         public string ubicacionimpresora { get; set; }
+
+        public virtual ICollection<ControlToner> cambios { get; set; }
     }
 }

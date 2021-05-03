@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Indicadores.Web.Models.Impresion.Impresora;
 using Microsoft.EntityFrameworkCore;
+using Indicadores.Web.Models.Impresion.ControlT;
+using Indicadores.Entidades.Impresion;
 
 namespace Indicadores.Web.Controllers
 {
@@ -39,6 +41,8 @@ namespace Indicadores.Web.Controllers
                 ubicacionimpresora = i.ubicacionimpresora
             });
         }
+
+  
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
