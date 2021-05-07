@@ -50,7 +50,6 @@ namespace Indicadores.Web.Controllers
             });
         }
 
-
         // GET: api/Partidas/Mostrar/1
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> Mostrar([FromRoute] int id)
