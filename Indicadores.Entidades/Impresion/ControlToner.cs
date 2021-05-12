@@ -14,6 +14,7 @@ namespace Indicadores.Entidades.Impresion
         public int contador124 { get; set; }
         public int contador102 { get; set; }
         public DateTime fecha { get; set; }
+        public string toner { get; set; }
         public int impresoraidimpresora { get; set; }
 
         public Impresora impresora { get; set; }

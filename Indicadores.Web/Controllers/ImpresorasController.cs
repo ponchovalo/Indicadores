@@ -59,14 +59,19 @@ namespace Indicadores.Web.Controllers
                 idimpresora = i.idimpresora,
                 nombreimpresora = i.nombreimpresora,
                 modeloimpresora = i.modeloimpresora,
+                ubicacionimpresora = i.ubicacionimpresora,
                 cambios = i.listacambios.Select(c => new ControlTonerListaImpViewmodel
                 {
                     idcontrol = c.idcontrol,
                     fecha = c.fecha,
                     idimpresora = c.impresoraidimpresora,
                     idusuario = c.usuarioidusuario,
-                    usuario = c.usuario.nomusuario
-                }).ToList()
+                    usuario = c.usuario.nomusuario,
+                    toner = c.toner,
+                    contador109 = c.contador109,
+                    contador124 = c.contador124,
+                    contador102 = c.contador102
+                }).OrderBy(c => c.fecha).ToList()
    
             });
         }
@@ -94,6 +99,8 @@ namespace Indicadores.Web.Controllers
                 ubicacionimpresora = impresora.ubicacionimpresora
             });
         }
+
+
         // PUT: api/Impresoras/Actualizar
         [HttpPut("[action]")]
         public async Task<IActionResult> Actualizar([FromBody] ActualizarImpViewModel model)

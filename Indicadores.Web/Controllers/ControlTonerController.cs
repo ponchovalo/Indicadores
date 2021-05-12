@@ -1,4 +1,5 @@
 ﻿using Indicadores.Datos;
+using Indicadores.Entidades.Impresion;
 using Indicadores.Web.Models.Impresion.ControlT;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -43,11 +44,107 @@ namespace Indicadores.Web.Controllers
             });
         }
 
-        // GET api/<ControlTonerController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // POST: api/ControlToner/Crear
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Crear([FromBody] CrearControlTViewModel model)
         {
-            return "value";
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            ControlToner control = new ControlToner
+            {
+                contador109 = model.contador109,
+                contador124 = model.contador124,
+                contador102 = model.contador102,
+                toner = model.toner,
+                fecha = model.fecha,
+                impresoraidimpresora = model.idimpresora,
+                usuarioidusuario = Int32.Parse(model.idusuario)
+            };
+
+            _context.ControlToners.Add(control);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        // PUT: api/ControlToner/Actualizar
+        [HttpPut("[action]")]
+        public async Task<IActionResult> Actualizar([FromBody] ActualizarControlTViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (model.idcontrol <= 0)
+            {
+                return BadRequest();
+            }
+
+            var control = await _context.ControlToners.FirstOrDefaultAsync(d => d.idcontrol == model.idcontrol);
+
+            if (control == null)
+            {
+                return NotFound();
+            }
+
+            control.idcontrol = model.idcontrol;
+            control.fecha = model.fecha;
+            control.contador102 = model.contador102;
+            control.contador109 = model.contador109;
+            control.contador124 = model.contador124;
+            control.impresoraidimpresora = model.idimpresora;
+            control.usuarioidusuario = model.idusuario;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                // Guardar Excepción
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        // DELETE: api/ControlToner/Eliminar/1
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> Eliminar([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var control = await _context.ControlToners.FindAsync(id);
+            if (control == null)
+            {
+                return NotFound();
+            }
+
+            _context.ControlToners.Remove(control);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+            return Ok(control);
         }
 
         // POST api/<ControlTonerController>
