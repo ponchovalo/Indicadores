@@ -48,6 +48,7 @@ namespace Indicadores.Datos
         public DbSet<Turno> Turnos { get; set; }
         public DbSet<Impresora> Impresoras { get; set; }
         public DbSet<ControlToner> ControlToners { get; set; }
+        public DbSet<ReporteMes> ReportesMes { get; set; }
 
         public DbContextIndicadores(DbContextOptions<DbContextIndicadores> options) : base(options)
         {
@@ -84,6 +85,7 @@ namespace Indicadores.Datos
             modelBuilder.ApplyConfiguration(new TurnoMap());
             modelBuilder.ApplyConfiguration(new ImpresoraMap());
             modelBuilder.ApplyConfiguration(new ControlTonerMap());
+            modelBuilder.ApplyConfiguration(new ReporteMesMap());
         }
     }
 }
