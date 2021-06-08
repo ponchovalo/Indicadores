@@ -16,6 +16,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Indicadores.Datos.Mapping.Computo;
+using Indicadores.Entidades.Computo;
 
 namespace Indicadores.Datos
 {
@@ -49,6 +51,9 @@ namespace Indicadores.Datos
         public DbSet<Impresora> Impresoras { get; set; }
         public DbSet<ControlToner> ControlToners { get; set; }
         public DbSet<ReporteMes> ReportesMes { get; set; }
+        public DbSet<Blade> Blades { get; set; }
+        public DbSet<Cube> Cubes { get; set; }
+
 
         public DbContextIndicadores(DbContextOptions<DbContextIndicadores> options) : base(options)
         {
@@ -86,6 +91,8 @@ namespace Indicadores.Datos
             modelBuilder.ApplyConfiguration(new ImpresoraMap());
             modelBuilder.ApplyConfiguration(new ControlTonerMap());
             modelBuilder.ApplyConfiguration(new ReporteMesMap());
+            modelBuilder.ApplyConfiguration(new CubeMap());
+            modelBuilder.ApplyConfiguration(new BladeMap());
         }
     }
 }

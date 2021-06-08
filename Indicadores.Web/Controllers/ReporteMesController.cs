@@ -52,12 +52,6 @@ namespace Indicadores.Web.Controllers
 
 
 
-
-
-
-
-
-
         // GET: api/ReporteMes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ReporteMes>> GetReporteMes(int id)
