@@ -17,5 +17,6 @@ namespace Indicadores.Web.Models.Impresion.ReporteMes
         public int month { get; set; }
         public int year { get; set; }
         public Indicadores.Entidades.Impresion.Impresora impresora { get; set; }
+
     }
 }

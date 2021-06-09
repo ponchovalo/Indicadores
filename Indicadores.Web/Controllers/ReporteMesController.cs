@@ -52,68 +52,51 @@ namespace Indicadores.Web.Controllers
 
 
 
-        // GET: api/ReporteMes/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ReporteMes>> GetReporteMes(int id)
+
+        // POST: api/ReporteMes/Crear
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Crear([FromBody] ReporteViewModel model)
         {
-            var reporteMes = await _context.ReportesMes.FindAsync(id);
-
-            if (reporteMes == null)
-            {
-                return NotFound();
-            }
-
-            return reporteMes;
-        }
-
-
-
-
-
-
-        // PUT: api/ReporteMes/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReporteMes(int id, ReporteMes reporteMes)
-        {
-            if (id != reporteMes.idreporte)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(reporteMes).State = EntityState.Modified;
-
+   
             try
             {
+                foreach (var det in model.registros)
+                {
+                    
+                    var imp = _context.ReportesMes
+                    .Include(i => i.impresora)
+                    .FirstOrDefault(i => i.impresoraidimpresora == det.impresora.idimpresora && i.month == (det.month - 1) && i.year == det.year);
+
+                    if (imp == null)
+                    {
+                        return NotFound();
+                    }
+                                    
+                    ReporteMes reporte = new ReporteMes
+                    {
+                        idreporte = det.idreporte,
+                        contador109 = det.contador109,
+                        contador124 = det.contador124,
+                        contador102 = det.contador102,
+                        vpbyn = det.contador109 - imp.contador109,
+                        vpcolor = det.contador124 - imp.contador124,
+                        year = det.year,
+                        month = det.month,
+                        impresoraidimpresora = det.impresora.idimpresora
+                    };
+                    _context.ReportesMes.Add(reporte);
+                }
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!ReporteMesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(ex);
             }
 
-            return NoContent();
+            return Ok();
         }
 
-        // POST: api/ReporteMes
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult<ReporteMes>> PostReporteMes(ReporteMes reporteMes)
-        {
-            _context.ReportesMes.Add(reporteMes);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetReporteMes", new { id = reporteMes.idreporte }, reporteMes);
-        }
 
         // DELETE: api/ReporteMes/5
         [HttpDelete("{id}")]

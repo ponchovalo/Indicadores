@@ -19,5 +19,7 @@ namespace Indicadores.Entidades.Computo
         public string bladeswitchso {get; set; }
         public string bladepuertoso {get; set; }
         public string bladestatus {get; set; }
+
+
     }
 }

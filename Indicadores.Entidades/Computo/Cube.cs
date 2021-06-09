@@ -14,6 +14,6 @@ namespace Indicadores.Entidades.Computo
         public string cubepuerto { get; set; }
         public string cubeedificio { get; set; }
         public string cubeubicacion { get; set; }
-        public bool estado { get; set; }
+        public bool cubeestado { get; set; }
     }
 }
