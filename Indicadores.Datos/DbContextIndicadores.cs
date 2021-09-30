@@ -53,6 +53,7 @@ namespace Indicadores.Datos
         public DbSet<ReporteMes> ReportesMes { get; set; }
         public DbSet<Blade> Blades { get; set; }
         public DbSet<Cube> Cubes { get; set; }
+        public DbSet<AlmacenImpresion> AlmacenImpresiones { get; set; }
 
 
         public DbContextIndicadores(DbContextOptions<DbContextIndicadores> options) : base(options)
@@ -93,6 +94,7 @@ namespace Indicadores.Datos
             modelBuilder.ApplyConfiguration(new ReporteMesMap());
             modelBuilder.ApplyConfiguration(new CubeMap());
             modelBuilder.ApplyConfiguration(new BladeMap());
+            modelBuilder.ApplyConfiguration(new AlmacenImpresionMap());
         }
     }
 }
